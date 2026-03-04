@@ -8,7 +8,7 @@ const startServer = async () => {
     await connectDB();
 
     const server =app.listen(PORT, () => {
-        console.log(`Server is running on port https://localhost:${PORT}`);
+        console.log(`Server is running at http://localhost:${PORT}`);
     });
 
     server.on('error', (error) => {
