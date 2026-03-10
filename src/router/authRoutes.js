@@ -1,17 +1,13 @@
 import { Router } from "express";
+import { register, login, me } from "../controller/authController.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = Router();
 
-router.post("/register", (req, res) => {
-    res.json({ message: "Register endpoint" });
-});
+router.post("/register", register);
 
-router.post("/login", (req, res) => {
-    res.json({ message: "Login endpoint" });
-});
+router.post("/login", login);
 
-router.get("/me", (req, res) => {
-    res.json({ message: "Get current user endpoint" });
-});
+router.get("/me", authMiddleware, me);
 
 export default router;

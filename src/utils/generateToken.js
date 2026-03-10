@@ -1,0 +1,13 @@
+import jtw from "jsonwebtoken";
+
+const generateToken = (userId) => {
+    const token = jtw.sign(
+        { id: userId },
+        process.env.JWT_SECRET,
+        { expiresIn: "7d" }
+    );
+
+    return token;
+};
+
+export default generateToken;
