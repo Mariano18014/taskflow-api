@@ -1,29 +1,15 @@
 import { Router } from "express";
+import { createComment, getTaskComments, updateComment, deleteComment } from "../controller/commentController.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = Router();
 
-router.post("/tasks/:taskId/comments", (req, res) => {
-    res.json({
-        message: `Create comment for task ${req.params.taskId}`,
-    });
-});
+router.post("/tasks/:taskId/comments", authMiddleware, createComment);
 
-router.get("/tasks/:taskId/comments", (req, res) => {
-    res.json({
-        message: `Get comments for task ${req.params.taskId}`,
-    });
-});
+router.get("/tasks/:taskId/comments", authMiddleware, getTaskComments);
 
-router.put("/comments/:commentId", (req, res) => {
-    res.json({
-        message: `Update comment ${req.params.commentId}`,
-    });
-});
+router.put("/comments/:commentId", authMiddleware, updateComment);
 
-router.delete("/comments/:commentId", (req, res) => {
-    res.json({
-        message: `Delete comment ${req.params.commentId}`,
-    });
-});
+router.delete("/comments/:commentId", authMiddleware, deleteComment);
 
 export default router;

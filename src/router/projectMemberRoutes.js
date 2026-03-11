@@ -1,29 +1,15 @@
 import { Router } from "express";
+import { addProjectMember, getProjectMembers, updateProjectMemberRole, removeProjectMember } from "../controller/projectMemberController.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = Router();
 
-router.post("/:projectId/members", (req, res) => {
-    res.json({
-        message: `Add member to project ${req.params.projectId}`,
-    });
-});
+router.post("/:projectId/members", authMiddleware, addProjectMember);
 
-router.get("/:projectId/members", (req, res) => {
-    res.json({
-        message: `Get members of project ${req.params.projectId}`,
-    });
-});
+router.get("/:projectId/members", authMiddleware, getProjectMembers);
 
-router.put("/:projectId/members/:userId", (req, res) => {
-    res.json({
-        message: `Update member ${req.params.userId} in project ${req.params.projectId}`,
-    });
-});
+router.put("/:projectId/members/:userId", authMiddleware, updateProjectMemberRole);
 
-router.delete("/:projectId/members/:userId", (req, res) => {
-    res.json({
-        message: `Remove member ${req.params.userId} from project ${req.params.projectId}`,
-    });
-});
+router.delete("/:projectId/members/:userId", authMiddleware, removeProjectMember);
 
 export default router;
