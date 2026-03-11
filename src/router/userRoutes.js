@@ -1,21 +1,15 @@
 import { Router } from "express";
+import { getUsers, getUserById, updateUser, deleteUser } from "../controller/userController.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-    res.json({ message: "Get all users endpoint" });
-});
+router.get("/", authMiddleware, getUsers);
 
-router.get("/:id", (req, res) => {
-    res.json({ message: `Get user with id ${req.params.id}` });
-});
+router.get("/:id", authMiddleware, getUserById);
 
-router.put("/:id", (req, res) => {
-    res.json({ message: `Update user with id ${req.params.id}` });
-});
+router.put("/:id", authMiddleware, updateUser);
 
-router.delete("/:id", (req, res) => {
-    res.json({ message: `Delete user with id ${req.params.id}` });
-});
+router.delete("/:id", authMiddleware, deleteUser);
 
 export default router;

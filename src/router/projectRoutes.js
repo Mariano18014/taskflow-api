@@ -1,25 +1,17 @@
 import { Router } from "express";
+import { createProject, getProjects, getProjectById, updateProject, deleteProject } from "../controller/projectController.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = Router();
 
-router.post("/", (req, res) => {
-    res.json({ message: "Create project endpoint" });
-});
+router.post("/", authMiddleware, createProject);
 
-router.get("/", (req, res) => {
-    res.json({ message: "Get all projects endpoint" });
-});
+router.get("/", authMiddleware, getProjects);
 
-router.get("/:id", (req, res) => {
-    res.json({ message: `Get project with id ${req.params.id}` });
-});
+router.get("/:id", authMiddleware, getProjectById);
 
-router.put("/:id", (req, res) => {
-    res.json({ message: `Update project with id ${req.params.id}` });
-});
+router.put("/:id", authMiddleware, updateProject);
 
-router.delete("/:id", (req, res) => {
-    res.json({ message: `Delete project with id ${req.params.id}` });
-});
+router.delete("/:id", authMiddleware, deleteProject);
 
 export default router;

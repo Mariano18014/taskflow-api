@@ -10,8 +10,11 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
 app.use("/api", routes);
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.use(notFound);
 app.use(errorHandler);
 
