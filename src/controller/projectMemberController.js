@@ -1,4 +1,4 @@
-import ProjectMemberService from "../service/projectService.js";
+import ProjectMemberService from "../service/projectMemberService.js";
 
 export const addProjectMember = async (req, res, next) => {
     try {
