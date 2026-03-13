@@ -1,4 +1,4 @@
-import swaggerJsdoc from "swagger-jsdoc";
+import swaggerJSDoc from "swagger-jsdoc";
 import "dotenv/config";
 
 const options = {
@@ -14,7 +14,6 @@ const options = {
             url: `http://localhost:${process.env.PORT}/api`,
         },
         ],
-
         components: {
             securitySchemes: {
                 bearerAuth: {
@@ -24,12 +23,10 @@ const options = {
                 },
             },
         },
-
     },
-
     apis: ["./src/routes/*.js"],
 };
 
-const swaggerSpec = swaggerJsdoc(options);
+const swaggerSpec = swaggerJSDoc(options);
 
 export default swaggerSpec;
